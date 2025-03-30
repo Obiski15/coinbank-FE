@@ -9,7 +9,7 @@ interface Properties {
 
 export default function Feature({ children, className }: Properties) {
   return (
-    <div className={cn(`px-40 pt-[100px] space-y-16`, className)}>
+    <div className={cn(`space-y-16 px-40 pt-[100px]`, className)}>
       {children}
     </div>
   )

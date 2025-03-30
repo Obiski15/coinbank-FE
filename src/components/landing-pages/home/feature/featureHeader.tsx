@@ -14,17 +14,17 @@ export default function FeatureHeader({
   return (
     <div
       className={cn(
-        "mx-auto space-y-4 text-center max-w-[544px] w-full",
+        "mx-auto w-full max-w-[544px] space-y-4 text-center",
         className
       )}
     >
-      <h5 className="text-primary font-medium tracking-[0.035rem]">
+      <h5 className="font-medium tracking-[0.035rem] text-primary">
         {title || "FEATURES"}
       </h5>
-      <h3 className="text-black font-medium text-display-md tracking-tight">
+      <h3 className="text-display-md font-medium tracking-tight text-black">
         {subTitle}
       </h3>
-      <p className="text-neutral-500 font-normal text-base tracking-[0.005]">
+      <p className="text-base font-normal tracking-[0.005] text-neutral-500">
         {description}
       </p>
     </div>

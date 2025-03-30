@@ -14,7 +14,7 @@ async function Footer() {
   await connection()
 
   return (
-    <div className="rounded-3xl pt-16 pl-16 pb-[58px] pr-8 bg-white flex justify-between items-start gap-24 shadow-[0px_4px_200px_0px_hsla(173, 59%, 94%, 0.2)]">
+    <div className="shadow-[0px_4px_200px_0px_hsla(173, 59%, 94%, 0.2)] flex items-start justify-between gap-24 rounded-3xl bg-white pb-[58px] pl-16 pr-8 pt-16">
       <div className="space-y-12">
         <div className="space-y-4">
           <Image alt="icon" src="/icons/icon.svg" width={42} height={40} />
@@ -36,70 +36,70 @@ async function Footer() {
           </div>
         </div>
 
-        <p className="text-neutral-400 font-normal text-sm">
+        <p className="text-sm font-normal text-neutral-400">
           Copyright {new Date().getFullYear()} &copy; Coinbank
         </p>
       </div>
 
-      <div className="flex justify-between items-start gap-8">
+      <div className="flex items-start justify-between gap-8">
         <div className="space-y-4">
-          <p className="text-black font-medium text-base tracking-wider">
+          <p className="text-base font-medium tracking-wider text-black">
             Company
           </p>
           <div className="space-y-2">
-            <p className="font-normal text-neutral-500 text-sm">About</p>
-            <p className="font-normal text-neutral-500 text-sm">Careers</p>
-            <p className="font-normal text-neutral-500 text-sm">Affiliates</p>
-            <p className="font-normal text-neutral-500 text-sm">Press</p>
-            <p className="font-normal text-neutral-500 text-sm">
+            <p className="text-sm font-normal text-neutral-500">About</p>
+            <p className="text-sm font-normal text-neutral-500">Careers</p>
+            <p className="text-sm font-normal text-neutral-500">Affiliates</p>
+            <p className="text-sm font-normal text-neutral-500">Press</p>
+            <p className="text-sm font-normal text-neutral-500">
               Legal & Privacy
             </p>
           </div>
         </div>
         <div className="space-y-4">
-          <p className="text-black font-medium text-base tracking-wider">
+          <p className="text-base font-medium tracking-wider text-black">
             Features
           </p>
           <div className="space-y-2">
-            <p className="font-normal text-neutral-500 text-sm">
+            <p className="text-sm font-normal text-neutral-500">
               Buy & Sell Crypto
             </p>
-            <p className="font-normal text-neutral-500 text-sm">Wallet</p>
-            <p className="font-normal text-neutral-500 text-sm">Dashboard</p>
-            <p className="font-normal text-neutral-500 text-sm">Trading</p>
-            <p className="font-normal text-neutral-500 text-sm">Portfolio</p>
+            <p className="text-sm font-normal text-neutral-500">Wallet</p>
+            <p className="text-sm font-normal text-neutral-500">Dashboard</p>
+            <p className="text-sm font-normal text-neutral-500">Trading</p>
+            <p className="text-sm font-normal text-neutral-500">Portfolio</p>
           </div>
         </div>
         <div className="space-y-4">
-          <p className="text-black font-medium text-base tracking-wider">
+          <p className="text-base font-medium tracking-wider text-black">
             Developers
           </p>
           <div className="space-y-2">
-            <p className="font-normal text-neutral-500 text-sm">Cloud</p>
-            <p className="font-normal text-neutral-500 text-sm">Wallet SDK</p>
-            <p className="font-normal text-neutral-500 text-sm">
+            <p className="text-sm font-normal text-neutral-500">Cloud</p>
+            <p className="text-sm font-normal text-neutral-500">Wallet SDK</p>
+            <p className="text-sm font-normal text-neutral-500">
               Query & Transact
             </p>
-            <p className="font-normal text-neutral-500 text-sm">Commerce</p>
-            <p className="font-normal text-neutral-500 text-sm">
+            <p className="text-sm font-normal text-neutral-500">Commerce</p>
+            <p className="text-sm font-normal text-neutral-500">
               Exchange and Pro
             </p>
-            <p className="font-normal text-neutral-500 text-sm">API Access</p>
+            <p className="text-sm font-normal text-neutral-500">API Access</p>
           </div>
         </div>
         <div className="space-y-4">
-          <p className="text-black font-medium text-base tracking-wider">
+          <p className="text-base font-medium tracking-wider text-black">
             Company
           </p>
           <div className="space-y-2">
-            <p className="font-normal text-neutral-500 text-sm">Blog</p>
-            <p className="font-normal text-neutral-500 text-sm">
+            <p className="text-sm font-normal text-neutral-500">Blog</p>
+            <p className="text-sm font-normal text-neutral-500">
               Help and Support
             </p>
-            <p className="font-normal text-neutral-500 text-sm">
+            <p className="text-sm font-normal text-neutral-500">
               Customer Stories
             </p>
-            <p className="font-normal text-neutral-500 text-sm">FAQ</p>
+            <p className="text-sm font-normal text-neutral-500">FAQ</p>
           </div>
         </div>
       </div>

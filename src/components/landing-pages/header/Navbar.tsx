@@ -16,20 +16,20 @@ function Navbar() {
     <NavigationMenu>
       <NavigationMenuList className="gap-10">
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-black text-sm font-medium">
+          <NavigationMenuTrigger className="text-sm font-medium text-black">
             Features
           </NavigationMenuTrigger>
           <NavigationMenuContent>content</NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/">
-            <NavigationMenuLink className="text-black text-sm font-medium">
+            <NavigationMenuLink className="text-sm font-medium text-black">
               Prices
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-black text-sm font-medium">
+          <NavigationMenuTrigger className="text-sm font-medium text-black">
             Company
           </NavigationMenuTrigger>
           <NavigationMenuContent>content</NavigationMenuContent>
@@ -37,7 +37,7 @@ function Navbar() {
 
         <NavigationMenuItem>
           <Link href="/">
-            <NavigationMenuLink className="text-black text-sm font-medium">
+            <NavigationMenuLink className="text-sm font-medium text-black">
               Developers
             </NavigationMenuLink>
           </Link>

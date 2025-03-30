@@ -39,27 +39,27 @@ const ratings: {
 
 export default function Testimonial() {
   return (
-    <Feature className="pb-[100px] shadow-[0px_4px_200px_0px_hsla(173, 59%, 94%, 0.2)]">
+    <Feature className="shadow-[0px_4px_200px_0px_hsla(173, 59%, 94%, 0.2)] pb-[100px]">
       <FeatureHeader
         title="TESTIMONIALS"
         subTitle="Trusted by more than 100K+ peoples"
         description="Hear what they say about us and why you should choose Coinbank"
       />
 
-      <div className="grid grid-cols-3 justify-between items-center gap-8">
+      <div className="grid grid-cols-3 items-center justify-between gap-8">
         {ratings.map(({ review, numRating, occupation, image, name }, i) => (
           <div
             key={name}
-            className="p-12 pb-[52px] bg-white rounded-2xl flex flex-col justify-center items-center gap-12"
+            className="flex flex-col items-center justify-center gap-12 rounded-2xl bg-white p-12 pb-[52px]"
           >
             <Ratings numRating={numRating} />
 
-            <div className="flex flex-col justify-center items-center gap-[42px]">
-              <h4 className="text-black font-medium text-lg text-center">
+            <div className="flex flex-col items-center justify-center gap-[42px]">
+              <h4 className="text-center text-lg font-medium text-black">
                 {review}
               </h4>
 
-              <div className="flex justify-between items-center gap-4">
+              <div className="flex items-center justify-between gap-4">
                 <Image
                   src={`${image}-${i + 1}.png`}
                   alt={`rating-${i + 1}`}
@@ -69,8 +69,8 @@ export default function Testimonial() {
                 />
 
                 <div className="space-y-[2px]">
-                  <h5 className="text-black font-medium text-sm">{name}</h5>
-                  <p className="text-xs text-neutral-500 font-normal tracking-[0.0375rem]">
+                  <h5 className="text-sm font-medium text-black">{name}</h5>
+                  <p className="text-xs font-normal tracking-[0.0375rem] text-neutral-500">
                     {occupation}
                   </p>
                 </div>

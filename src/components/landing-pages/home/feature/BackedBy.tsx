@@ -4,14 +4,14 @@ import FeatureHeader from "./featureHeader"
 
 export default function BackedBy() {
   return (
-    <div className="pt-[100px] px-40 pb-12 space-y-12 text-center">
+    <div className="space-y-12 px-40 pb-12 pt-[100px] text-center">
       <FeatureHeader
         title="PARTNERS"
         subTitle="We're backed by the best"
         description="Trusted by these blockchains leading industries"
       />
 
-      <div className="mx-auto w-fit flex justify-between items-center flex-wrap gap-8">
+      <div className="mx-auto flex w-fit flex-wrap items-center justify-between gap-8">
         {Array.from({ length: 4 }, (_, i) => (
           <div key={i + 1}>
             <Image

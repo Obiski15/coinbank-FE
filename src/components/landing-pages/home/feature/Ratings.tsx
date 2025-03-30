@@ -11,7 +11,7 @@ function Ratings({ numRating }: Properties) {
         <Star
           key={i}
           fill={numRating >= i ? "hsl(var(--primary)" : "transparent"}
-          className="text-primary inline-block"
+          className="inline-block text-primary"
         />
       ))}
     </div>
