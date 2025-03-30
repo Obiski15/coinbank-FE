@@ -21,6 +21,8 @@ module.exports = {
         "home-feature-gradient-4":
           "linear-gradient(180deg, #FFFFFF 10.72%, #F7F6FE 93.03%)",
         "home-qr-code": "linear-gradient(135deg, #DAF727 24.71%, #725AEC 100%)",
+        "page-bottom-gradient":
+          "linear-gradient(180deg, #FFFFFF 10.72%, #F7F6FE 93.03%)",
       },
       colors: {
         background: "hsl(var(--background))",

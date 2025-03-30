@@ -1,5 +1,5 @@
+import Bottom from "@/components/landing-pages/bottom/Bottom"
 import Header from "@/components/landing-pages/header/Header"
-import Bottom from "@/components/landing-pages/home/bottom/Bottom"
 import AssetsAdded from "@/components/landing-pages/home/feature/assets-added"
 import BackedBy from "@/components/landing-pages/home/feature/BackedBy"
 import Feature1 from "@/components/landing-pages/home/feature/Feature1"
