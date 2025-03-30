@@ -1,5 +1,6 @@
 import Header from "@/components/landing-pages/header/Header"
 import Bottom from "@/components/landing-pages/home/bottom/Bottom"
+import AssetsAdded from "@/components/landing-pages/home/feature/assets-added"
 import BackedBy from "@/components/landing-pages/home/feature/BackedBy"
 import Feature1 from "@/components/landing-pages/home/feature/Feature1"
 import Feature2 from "@/components/landing-pages/home/feature/Feature2"
@@ -19,6 +20,7 @@ export default function Home() {
       <Feature3 />
       <Feature4 />
       <Testimonial />
+      <AssetsAdded />
       <Bottom />
     </>
   )

@@ -131,9 +131,9 @@ export default function Content() {
               <p>1000</p>
             </div>
 
-            <div className="absolute left-[-120] top-[212px] z-[99] flex items-start justify-start gap-6 rounded-2xl border-2 bg-black bg-[url('/icons/landing-pages/home/hero-envelope.svg')] bg-right-top bg-no-repeat px-6 pb-6 pt-8">
+            <div className="absolute left-[-120] top-[212px] z-[99] flex items-start justify-start gap-6 rounded-2xl border-2 bg-black bg-[url('/icons/landing-pages/home/envelope.svg')] bg-right-top bg-no-repeat px-6 pb-6 pt-8">
               <Image
-                src="/icons/crypto/BTC-large.svg"
+                src="/icons/landing-pages/home/BTC-large.svg"
                 alt="btc"
                 width={56}
                 height={84}

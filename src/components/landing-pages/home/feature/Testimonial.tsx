@@ -39,7 +39,7 @@ const ratings: {
 
 export default function Testimonial() {
   return (
-    <Feature className="shadow-[0px_4px_200px_0px_hsla(173, 59%, 94%, 0.2)] pb-[100px]">
+    <Feature className="shadow-[0px_4px_200px_0px_hsla(173, 59%, 94%, 0.2)] bg-primary-50 pb-[100px]">
       <FeatureHeader
         title="TESTIMONIALS"
         subTitle="Trusted by more than 100K+ peoples"

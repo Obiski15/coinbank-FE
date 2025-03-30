@@ -5,7 +5,7 @@ import FeatureHeader from "./featureHeader"
 
 export default function Feature3() {
   return (
-    <Feature className="pb-[100px]">
+    <Feature className="bg-white pb-[100px]">
       <FeatureHeader subTitle="Supercharge your trades with advanced features" />
 
       <div className="grid grid-cols-2 items-start justify-between gap-8">
