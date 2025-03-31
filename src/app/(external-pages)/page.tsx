@@ -1,5 +1,3 @@
-import Bottom from "@/components/landing-pages/bottom/Bottom"
-import Header from "@/components/landing-pages/header/Header"
 import AssetsAdded from "@/components/landing-pages/home/feature/assets-added"
 import BackedBy from "@/components/landing-pages/home/feature/BackedBy"
 import Feature1 from "@/components/landing-pages/home/feature/Feature1"
@@ -12,7 +10,6 @@ import Hero from "@/components/landing-pages/home/hero/Hero"
 export default function Home() {
   return (
     <>
-      <Header />
       <Hero />
       <BackedBy />
       <Feature1 />
@@ -21,7 +18,6 @@ export default function Home() {
       <Feature4 />
       <Testimonial />
       <AssetsAdded />
-      <Bottom />
     </>
   )
 }
