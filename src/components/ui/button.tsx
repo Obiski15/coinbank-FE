@@ -15,6 +15,8 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
           "border border-primary-400 bg-background shadow-sm hover:bg-accent text-black hover:text-accent-foreground",
+        "outline-primary":
+          "border border-primary-400 bg-background shadow-sm hover:bg-primary-50 text-primary",
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -38,17 +40,38 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  Icon?: React.ReactNode
+  iconPosition?: "left" | "right"
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      children,
+      Icon,
+      iconPosition,
+      asChild = false,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : "button"
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          "flex items-center justify-between gap-2",
+          buttonVariants({ variant, size, className })
+        )}
         ref={ref}
         {...props}
-      />
+      >
+        {Icon && iconPosition !== "right" && Icon}
+        {children}
+        {Icon && iconPosition === "right" && Icon}
+      </Comp>
     )
   }
 )

@@ -78,7 +78,7 @@ export default function Wallet() {
               <div className="flex flex-1 items-center justify-between gap-3 rounded-lg border border-neutral-300 px-4">
                 <Search className="size-6 flex-shrink-0 text-neutral-400" />
                 <Input
-                  placeholder="search"
+                  placeholder="Search"
                   className="flex-1 border-none text-md font-normal tracking-[0.005rem] text-neutral-500 focus-visible:ring-0"
                 />
               </div>
