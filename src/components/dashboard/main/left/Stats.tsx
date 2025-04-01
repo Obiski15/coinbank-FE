@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-import Watchlist from "./Watchlist"
+import Watchlist from "../../shared/Watchlist"
 
 export default function Stats() {
   return (

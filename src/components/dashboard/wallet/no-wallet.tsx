@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import Main from "../Main"
+import Main from "../shared/Main"
 import ConnectWallet from "./connect-wallet"
 
 export default function NoWallet() {

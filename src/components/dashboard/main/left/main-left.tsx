@@ -1,4 +1,4 @@
-import Main from "../../Main"
+import Main from "../../shared/Main"
 import Display from "./Display"
 import Portfolio from "./Portfolio"
 import Stats from "./Stats"
