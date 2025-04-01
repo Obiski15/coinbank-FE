@@ -1,7 +1,15 @@
 import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+import ConnectWallet from "../wallet/connect-wallet"
 
 function Header() {
   return (
@@ -12,8 +20,17 @@ function Header() {
 
       <div className="flex items-center justify-between gap-6">
         <div className="flex items-center justify-between gap-4">
-          <p>Select</p>
-          <Button>Connect Wallet</Button>
+          <Select defaultValue="usd">
+            <SelectTrigger>
+              <SelectValue placeholder="Currency" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="usd">USD</SelectItem>
+              <SelectItem value="eur">EUR</SelectItem>
+              <SelectItem value="ngn">NGN</SelectItem>
+            </SelectContent>
+          </Select>
+          <ConnectWallet />
         </div>
         <Image
           src="/icons/dashboard/bell.svg"

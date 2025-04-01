@@ -1,4 +1,4 @@
-import Main from "../Main"
+import Main from "../../Main"
 import RecentTransactions from "./recent-transactions"
 import Transact from "./Transact"
 
