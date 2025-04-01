@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Crypto wallet & Trading Platform",
 }
 
-export default function RootLayout({
+export default function PagesLayout({
   children,
 }: Readonly<{
   children: React.ReactNode

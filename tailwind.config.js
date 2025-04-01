@@ -23,12 +23,16 @@ module.exports = {
         "home-qr-code": "linear-gradient(135deg, #DAF727 24.71%, #725AEC 100%)",
         "page-bottom-gradient":
           "linear-gradient(180deg, #FFFFFF 10.72%, #F7F6FE 93.03%)",
+        "dashboard-stats-message":
+          "linear-gradient(180deg, #EFEDFD 0%, #EFEDFD 100%, #EFEDFD 100%)",
       },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         black: "hsl(var(--black))",
         white: "hsl(var(--white))",
+        success: "hsl(var(--success))",
+        error: "hsl(var(--error))",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
