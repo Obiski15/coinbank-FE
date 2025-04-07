@@ -31,12 +31,12 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="col-span-2 max-h-full space-y-6 border-2 pt-8">
+    <div className="col-span-2 h-full space-y-6 border-r border-neutral-200 pt-8">
       <div className="flex items-center justify-start gap-2 px-6">
         <Image src="/icons/icon.svg" alt="icon" width={32} height={32} />
         <div className="flex items-center justify-start gap-2">
           <ChevronLeft
-            className="size-3 text-neutral-400"
+            className="size-3 flex-shrink-0 cursor-pointer text-neutral-400"
             onClick={() => handleNavigation("/dashboard")}
           />
           <p className="text-xl font-medium tracking-[-0.00625rem] text-neutral-900">
@@ -45,7 +45,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="space-y-6 border-2">
+      <div className="space-y-6">
         <div className="space-y-2 px-6 py-2">
           <div className="flex items-center justify-start gap-2 px-3 py-0.5">
             <Image

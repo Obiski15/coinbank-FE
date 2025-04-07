@@ -46,7 +46,7 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="col-span-2 flex max-h-full flex-col items-start justify-between gap-10 border-r border-neutral-200 pt-8">
+    <div className="col-span-2 flex h-full flex-col items-start justify-between gap-10 border-r border-neutral-200 pt-8">
       <div className="w-full space-y-12">
         <div className="px-6">
           <Logo />
