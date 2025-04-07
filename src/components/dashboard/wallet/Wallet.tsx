@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { Search } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge"
+import MarketIndicator from "@/components/shared/market-indicator"
 import { Input } from "@/components/ui/input"
 // import {
 //   Pagination,
@@ -148,16 +148,11 @@ export default function Wallet() {
                       </p>
                     </TableCell>
                     <TableCell className="px-6 py-[22px]">
-                      <Badge className="rounded-[100px] border border-[#DAFBEF] bg-[#ECFDF7] px-1.5 py-1 text-success shadow-none hover:bg-success hover:text-white">
-                        <Image
-                          width={16}
-                          height={16}
-                          alt="success"
-                          src="/icons/success.svg"
-                          className="inline-block"
-                        />{" "}
-                        <span>1.37%</span>
-                      </Badge>
+                      <MarketIndicator
+                        variant="rounded"
+                        value={77}
+                        direction="up"
+                      />
                     </TableCell>
                     <TableCell className="px-6 py-[22px]">
                       <p className="text-sm font-normal text-neutral-700">

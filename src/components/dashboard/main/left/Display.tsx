@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import { Badge } from "@/components/ui/badge"
+import MarketIndicator from "@/components/shared/market-indicator"
 import { formatCurrency } from "@/lib/utils"
 
 export default function Display() {
@@ -23,16 +23,7 @@ export default function Display() {
             {formatCurrency(5260)}
           </p>
         </div>
-        <Badge className="rounded-[100px] border border-[#DAFBEF] bg-[#ECFDF7] px-1.5 py-1 text-success shadow-none hover:bg-success hover:text-white">
-          <Image
-            width={16}
-            height={16}
-            alt="success"
-            src="/icons/success.svg"
-            className="inline-block"
-          />{" "}
-          <span>1.37%</span>
-        </Badge>
+        <MarketIndicator variant="rounded" value={77} direction="up" />
       </div>
       <div className="flex flex-1 items-center justify-between px-6">
         <div className="space-y-[2px] font-medium">
@@ -49,16 +40,7 @@ export default function Display() {
             {formatCurrency(7472)}
           </p>
         </div>
-        <Badge className="rounded-[100px] border border-[#DAFBEF] bg-[#ECFDF7] px-1.5 py-1 text-success shadow-none hover:bg-success hover:text-white">
-          <Image
-            width={16}
-            height={16}
-            alt="success"
-            src="/icons/success.svg"
-            className="inline-block"
-          />{" "}
-          <span>1.37%</span>
-        </Badge>
+        <MarketIndicator variant="rounded" value={77} direction="up" />
       </div>
     </div>
   )

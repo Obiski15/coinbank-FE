@@ -71,7 +71,9 @@ export default function Sidebar() {
 
       <div className="w-full px-4 pb-8">
         <button
-          onClick={() => handleNavigation(pages[pages.length - 1].page)}
+          onClick={() =>
+            handleNavigation(`${pages[pages.length - 1].page}/notifications`)
+          }
           className={cn(
             "flex w-full cursor-pointer items-center justify-start gap-2 px-3 py-3.5 text-sm font-medium capitalize text-neutral-400",
             path.split("/").at(-1) === pages[pages.length - 1].page &&

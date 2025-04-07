@@ -1,5 +1,6 @@
 import Image from "next/image"
 
+import MarketIndicator from "@/components/shared/market-indicator"
 import { formatCurrency } from "@/lib/utils"
 
 const watchlist: {
@@ -95,15 +96,11 @@ function Watchlist() {
                   <p className="text-xs font-medium tracking-[0.00375rem] text-neutral-400">
                     {formatCurrency(price)}
                   </p>
-                  <div className="flex items-center justify-between gap-1">
-                    <Image
-                      width={16}
-                      height={16}
-                      alt="success"
-                      src={`/icons/${direction === "up" ? "success" : "error"}.svg`}
-                    />
-                    <p>{`${percentage / 100}%`}</p>
-                  </div>
+                  <MarketIndicator
+                    variant="plain"
+                    value={percentage}
+                    direction={direction}
+                  />
                 </div>
               </div>
             </div>
