@@ -1,3 +1,5 @@
-export default function page() {
-  return <div>security page</div>
+import SecurityComponent from "@/components/dashboard/settings/security/Security"
+
+export default function Security() {
+  return <SecurityComponent />
 }

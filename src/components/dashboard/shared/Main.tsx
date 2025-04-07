@@ -6,7 +6,7 @@ export default function Main({
   className,
   children,
 }: {
-  className: string
+  className?: string
   children: ReactNode
 }) {
   return (

@@ -1,19 +1,16 @@
 import { CircleHelp } from "lucide-react"
 
 import Main from "../../shared/Main"
+import FormTitleGroup from "../FormTitleGroup"
 import NotificationsForm from "./NotificationsForm"
 
 function Notifications() {
   return (
     <Main className="relative flex items-start justify-between p-8">
-      <div className="space-y-0.5 pt-8">
-        <p className="text-md font-medium tracking-wider text-neutral-900">
-          Manage
-        </p>
-        <p className="text-sm font-normal text-neutral-500">
-          Manage how you receive notifications
-        </p>
-      </div>
+      <FormTitleGroup
+        title="Manage"
+        description="Manage how you receive notifications"
+      />
 
       <NotificationsForm />
 
