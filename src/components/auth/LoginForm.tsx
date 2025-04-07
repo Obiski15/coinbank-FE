@@ -3,9 +3,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { loginSchema } from "@/schema/authSchema"
-import { ILogin } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm } from "react-hook-form"
+import * as z from "zod"
 
 import { Button } from "../ui/button"
 import {
@@ -19,13 +19,14 @@ import {
 import { Input } from "../ui/input"
 
 export default function LoginForm() {
-  const form = useForm<ILogin>({
+  const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
   })
 
-  const _onSubmit: SubmitHandler<ILogin> = values => {
+  const _onSubmit: SubmitHandler<z.infer<typeof loginSchema>> = values => {
     console.log(values)
   }
+
   return (
     <form className="space-y-10" onSubmit={form.handleSubmit(_onSubmit)}>
       <Form {...form}>

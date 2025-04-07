@@ -2,20 +2,27 @@
 
 import Link from "next/link"
 import { forgotPasswordSchema } from "@/schema/authSchema"
-import { IForgotPassword } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { z } from "zod"
 
 import { Button } from "../ui/button"
 import { Form, FormControl, FormField, FormItem } from "../ui/form"
 import { Input } from "../ui/input"
 
 function ForgotPasswordForm() {
-  const form = useForm<IForgotPassword>({
+  const form = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
   })
+
+  const _onSubmit: SubmitHandler<
+    z.infer<typeof forgotPasswordSchema>
+  > = values => {
+    console.log(values)
+  }
+
   return (
-    <form className="space-y-10">
+    <form className="space-y-10" onSubmit={form.handleSubmit(_onSubmit)}>
       <Form {...form}>
         <div className="space-y-4">
           <FormField
