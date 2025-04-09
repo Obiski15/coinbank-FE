@@ -1,5 +1,19 @@
 import { boolean, date, object, string } from "zod"
 
+export const passwordResetSchema = object({
+  current_password: string({ message: "Password is required" }).min(8, {
+    message: "Password must be at least 8 characters long",
+  }),
+  new_password: string({ message: "Password is required" }).min(8, {
+    message: "Password must be at least 8 characters long",
+  }),
+
+  confirm_password: string({ message: "Please confirm your password" }),
+}).refine(data => data.new_password === data.confirm_password, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
+})
+
 export const notificationsSchema = object({
   alert: boolean().default(false),
   merchantOrder: boolean().default(false),
