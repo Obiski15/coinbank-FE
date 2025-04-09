@@ -1,3 +1,5 @@
+import ProfileComponent from "@/components/dashboard/settings/profile/Profile"
+
 export default function Profile() {
-  return <div>profile page</div>
+  return <ProfileComponent />
 }

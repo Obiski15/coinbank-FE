@@ -145,14 +145,14 @@ export default function SecurityForm() {
                   <div className="flex flex-1 items-center justify-start gap-4">
                     <Image
                       src="/icons/dashboard/mail.svg"
-                      alt="message"
+                      alt="mail"
                       width={40}
                       height={40}
                     />
 
                     <FormTitleGroup
                       className="space-y-1 p-0"
-                      title="Text Message"
+                      title="Email"
                       description="When you sign in, you will receive notification to approve your login on your email andresamosa@mail.com"
                     />
                   </div>
