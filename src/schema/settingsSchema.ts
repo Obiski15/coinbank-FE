@@ -38,6 +38,16 @@ export const securitySchema = object({
   }),
 })
 
+export const preferencesSchema = object({
+  timezone: string({
+    message: "Timezone is required",
+  }).min(1, { message: "Please select a timezone" }),
+
+  currency: string({
+    message: "Currency is required",
+  }).min(1, { message: "Please select a currency" }),
+})
+
 export const profileSchema = object({
   first_name: string({ message: "First name is required" }).min(1, {
     message: "Please enter your first name",

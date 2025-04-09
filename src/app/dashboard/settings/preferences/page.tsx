@@ -1,3 +1,5 @@
+import PreferencesComponent from "@/components/dashboard/settings/preferences/Preferences"
+
 export default function Preferences() {
-  return <div></div>
+  return <PreferencesComponent />
 }
