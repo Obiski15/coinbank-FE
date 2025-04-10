@@ -1,5 +1,8 @@
 import Image from "next/image"
+// import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { ChevronRight } from "lucide-react"
+
+// import "../../../../node_modules/@rainbow-me/rainbowkit/dist/index.css"
 
 import {
   Dialog,
@@ -53,5 +56,6 @@ export default function ConnectWallet() {
         </div>
       </DialogContent>
     </Dialog>
+    // <ConnectButton />
   )
 }

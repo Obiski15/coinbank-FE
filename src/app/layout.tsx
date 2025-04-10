@@ -3,6 +3,10 @@ import localFont from "next/font/local"
 
 import "./globals.css"
 
+import ReactQueryProvider from "@/providers/ReactQueryProvider"
+import WagmiProvider from "@/providers/WagmiProvider"
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit"
+
 const aeonik = localFont({
   src: "./fonts/aeonik.otf",
   display: "swap",
@@ -20,7 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${aeonik.className} antialiased`}>{children}</body>
+      <body className={`${aeonik.className} antialiased`}>
+        <ReactQueryProvider>
+          <WagmiProvider>
+            <RainbowKitProvider>{children}</RainbowKitProvider>
+          </WagmiProvider>
+        </ReactQueryProvider>
+      </body>
     </html>
   )
 }
