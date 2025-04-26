@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 
 import {
@@ -19,7 +20,54 @@ function Navbar() {
           <NavigationMenuTrigger className="text-sm font-medium text-black">
             Features
           </NavigationMenuTrigger>
-          <NavigationMenuContent>content</NavigationMenuContent>
+          <NavigationMenuContent>
+            <div className="space-y-6 rounded-lg bg-white p-8 pr-[88px] text-sm font-medium">
+              <h3 className="tracking-[0.035] text-neutral-400">FEATURES</h3>
+
+              <ul className="space-y-6 capitalize text-neutral-900">
+                <li className="flex items-center justify-start gap-4">
+                  <span className="relative size-6">
+                    <Image
+                      className="inline"
+                      src="/icons/nav/funding.svg"
+                      alt="funding"
+                      fill
+                    />
+                  </span>
+                  <span className="whitespace-nowrap">funding</span>
+                </li>
+                <li className="flex items-center justify-start gap-4">
+                  <span className="relative size-6">
+                    <Image src="/icons/nav/staking.svg" alt="staking" fill />
+                  </span>
+
+                  <span className="whitespace-nowrap">staking</span>
+                </li>
+                <li className="flex items-center justify-start gap-4">
+                  <span className="relative size-6">
+                    <Image
+                      src="/icons/nav/liquidity.svg"
+                      alt="liquidity"
+                      fill
+                    />
+                  </span>
+
+                  <span className="whitespace-nowrap">liquidity</span>
+                </li>
+
+                <li className="flex items-center justify-start gap-4">
+                  <span className="relative size-6">
+                    <Image
+                      src="/icons/nav/trading.svg"
+                      alt="margin trading"
+                      fill
+                    />
+                  </span>
+                  <span className="whitespace-nowrap">margin trading</span>
+                </li>
+              </ul>
+            </div>
+          </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/">
@@ -32,7 +80,46 @@ function Navbar() {
           <NavigationMenuTrigger className="text-sm font-medium text-black">
             Company
           </NavigationMenuTrigger>
-          <NavigationMenuContent>content</NavigationMenuContent>
+          <NavigationMenuContent>
+            <div className="space-y-6 rounded-lg bg-white p-8 pr-[88px] text-sm font-medium">
+              <h3 className="tracking-[0.035] text-neutral-400">COMPANY</h3>
+
+              <ul className="space-y-6 text-neutral-900">
+                <li className="flex items-center justify-start gap-4">
+                  <span className="relative size-6">
+                    <Image
+                      className="inline"
+                      src="/icons/nav/about.svg"
+                      alt="about"
+                      fill
+                    />
+                  </span>
+                  <span className="whitespace-nowrap">About</span>
+                </li>
+                <li className="flex items-center justify-start gap-4">
+                  <span className="relative size-6">
+                    <Image src="/icons/nav/blog.svg" alt="blog" fill />
+                  </span>
+
+                  <span className="whitespace-nowrap">Blog</span>
+                </li>
+                <li className="flex items-center justify-start gap-4">
+                  <span className="relative size-6">
+                    <Image src="/icons/nav/faq.svg" alt="faq" fill />
+                  </span>
+
+                  <span className="whitespace-nowrap">FAQs</span>
+                </li>
+                <li className="flex items-center justify-start gap-4">
+                  <span className="relative size-6">
+                    <Image src="/icons/nav/support.svg" alt="support" fill />
+                  </span>
+
+                  <span className="whitespace-nowrap">Support</span>
+                </li>
+              </ul>
+            </div>
+          </NavigationMenuContent>
         </NavigationMenuItem>
 
         <NavigationMenuItem>

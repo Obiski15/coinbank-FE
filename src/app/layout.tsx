@@ -26,9 +26,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${aeonik.className} antialiased`}>
         <ReactQueryProvider>
-          <WagmiProvider>
-            <RainbowKitProvider>{children}</RainbowKitProvider>
-          </WagmiProvider>
+          {/* <WagmiProvider>
+            <RainbowKitProvider> */}
+          {children}
+          {/* </RainbowKitProvider> */}
+          {/* </WagmiProvider/> */}
         </ReactQueryProvider>
       </body>
     </html>
