@@ -2,12 +2,22 @@ import Image from "next/image"
 import Link from "next/link"
 import { connection } from "next/server"
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 const socials: { url: string; icon: string }[] = [
-  { url: "https://www.facebook.com/obiski15", icon: "/icons/social/instagram" },
-  { url: "https://www.facebook.com/obiski15", icon: "/icons/social/facebook" },
-  { url: "https://www.facebook.com/obiski15", icon: "/icons/social/x" },
-  { url: "https://www.facebook.com/obiski15", icon: "/icons/social/linkedin" },
-  { url: "https://www.facebook.com/obiski15", icon: "/icons/social/discord" },
+  { url: "https://www.instagram.com/_obiski", icon: "/icons/social/instagram" },
+  { url: "https://www.facebook.com/Obiski15", icon: "/icons/social/facebook" },
+  { url: "https://www.x.com/_obiski", icon: "/icons/social/x" },
+  {
+    url: "https://www.linkedin.com/in/obiski15",
+    icon: "/icons/social/linkedin",
+  },
 ]
 
 async function Footer() {
@@ -19,7 +29,17 @@ async function Footer() {
         <div className="space-y-4">
           <Image alt="icon" src="/icons/icon.svg" width={42} height={40} />
           <div className="space-y-6">
-            <div>select</div>
+            <Select defaultValue="eng">
+              <SelectTrigger>
+                <SelectValue placeholder="Currency" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="eng">English</SelectItem>
+                <SelectItem value="frc">French</SelectItem>
+                <SelectItem value="spa">Spanish</SelectItem>
+              </SelectContent>
+            </Select>
+
             <div className="space-x-4">
               {socials.map(({ url, icon }, i) => (
                 <Link key={i} href={url}>

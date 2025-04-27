@@ -1,8 +1,9 @@
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Logo() {
   return (
-    <div className="space-x-2">
+    <Link href="/" className="flex-shrink-0 space-x-2">
       <Image
         src="/icons/icon.svg"
         className="inline-block"
@@ -17,6 +18,6 @@ export default function Logo() {
         width={116}
         height={20}
       />
-    </div>
+    </Link>
   )
 }

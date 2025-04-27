@@ -4,8 +4,6 @@ import localFont from "next/font/local"
 import "./globals.css"
 
 import ReactQueryProvider from "@/providers/ReactQueryProvider"
-import WagmiProvider from "@/providers/WagmiProvider"
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit"
 
 const aeonik = localFont({
   src: "./fonts/aeonik.otf",

@@ -85,37 +85,60 @@ function Navbar() {
               <h3 className="tracking-[0.035] text-neutral-400">COMPANY</h3>
 
               <ul className="space-y-6 text-neutral-900">
-                <li className="flex items-center justify-start gap-4">
-                  <span className="relative size-6">
-                    <Image
-                      className="inline"
-                      src="/icons/nav/about.svg"
-                      alt="about"
-                      fill
-                    />
-                  </span>
-                  <span className="whitespace-nowrap">About</span>
+                <li>
+                  <Link
+                    href="/about"
+                    className="flex items-center justify-start gap-4"
+                  >
+                    <span className="relative size-6">
+                      <Image
+                        className="inline"
+                        src="/icons/nav/about.svg"
+                        alt="about"
+                        fill
+                      />
+                    </span>
+                    <span className="whitespace-nowrap">About</span>
+                  </Link>
                 </li>
-                <li className="flex items-center justify-start gap-4">
-                  <span className="relative size-6">
-                    <Image src="/icons/nav/blog.svg" alt="blog" fill />
-                  </span>
 
-                  <span className="whitespace-nowrap">Blog</span>
+                <li>
+                  <Link
+                    href="/blog"
+                    className="flex items-center justify-start gap-4"
+                  >
+                    <span className="relative size-6">
+                      <Image src="/icons/nav/blog.svg" alt="blog" fill />
+                    </span>
+
+                    <span className="whitespace-nowrap">Blog</span>
+                  </Link>
                 </li>
-                <li className="flex items-center justify-start gap-4">
-                  <span className="relative size-6">
-                    <Image src="/icons/nav/faq.svg" alt="faq" fill />
-                  </span>
 
-                  <span className="whitespace-nowrap">FAQs</span>
+                <li>
+                  <Link
+                    href="/faq"
+                    className="flex items-center justify-start gap-4"
+                  >
+                    <span className="relative size-6">
+                      <Image src="/icons/nav/faq.svg" alt="faq" fill />
+                    </span>
+
+                    <span className="whitespace-nowrap">FAQs</span>
+                  </Link>
                 </li>
-                <li className="flex items-center justify-start gap-4">
-                  <span className="relative size-6">
-                    <Image src="/icons/nav/support.svg" alt="support" fill />
-                  </span>
 
-                  <span className="whitespace-nowrap">Support</span>
+                <li>
+                  <Link
+                    href="/support"
+                    className="flex items-center justify-start gap-4"
+                  >
+                    <span className="relative size-6">
+                      <Image src="/icons/nav/support.svg" alt="support" fill />
+                    </span>
+
+                    <span className="whitespace-nowrap">Support</span>
+                  </Link>
                 </li>
               </ul>
             </div>
