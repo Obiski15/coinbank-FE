@@ -24,7 +24,7 @@ async function Footer() {
   await connection()
 
   return (
-    <div className="shadow-[0px_4px_200px_0px_hsla(173, 59%, 94%, 0.2)] flex items-start justify-between gap-24 rounded-3xl bg-white pb-[58px] pl-16 pr-8 pt-16">
+    <div className="shadow-[0px_4px_200px_0px_hsla(173, 59%, 94%, 0.2)] flex flex-col items-start justify-between gap-12 rounded-3xl bg-white p-8 pb-[58px] lg:gap-24 lg:pl-16 lg:pr-8 lg:pt-16 min-[1100px]:flex-row">
       <div className="space-y-12">
         <div className="space-y-4">
           <Image alt="icon" src="/icons/icon.svg" width={42} height={40} />
@@ -61,7 +61,7 @@ async function Footer() {
         </p>
       </div>
 
-      <div className="flex items-start justify-between gap-8">
+      <div className="flex flex-col items-start justify-between gap-8 md:flex-row">
         <div className="space-y-4">
           <p className="text-base font-medium tracking-wider text-black">
             Company

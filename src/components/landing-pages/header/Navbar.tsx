@@ -15,9 +15,9 @@ import {
 function Navbar() {
   return (
     <NavigationMenu>
-      <NavigationMenuList className="gap-10">
+      <NavigationMenuList className="gap-10 max-lg:flex-col max-lg:items-start max-lg:justify-start">
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-sm font-medium text-black">
+          <NavigationMenuTrigger className="text-sm font-medium text-black max-lg:px-0">
             Features
           </NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -70,14 +70,15 @@ function Navbar() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/">
-            <NavigationMenuLink className="text-sm font-medium text-black">
-              Prices
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink
+            href="/"
+            className="text-sm font-medium text-black"
+          >
+            Prices
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-sm font-medium text-black">
+          <NavigationMenuTrigger className="text-sm font-medium text-black max-lg:px-0">
             Company
           </NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -146,11 +147,12 @@ function Navbar() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/">
-            <NavigationMenuLink className="text-sm font-medium text-black">
-              Developers
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink
+            href="/"
+            className="text-sm font-medium text-black"
+          >
+            Developers
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

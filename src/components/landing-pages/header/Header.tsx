@@ -1,5 +1,6 @@
 import Logo from "../../Logo"
 import Buttons from "./Buttons"
+import Hamburger from "./Hamburger"
 import Navbar from "./Navbar"
 
 function Header() {
@@ -7,8 +8,14 @@ function Header() {
     <div className="bg-white px-12 py-6 backdrop-blur-[80px]">
       <div className="flex items-center justify-between gap-2">
         <Logo />
-        <Navbar />
-        <Buttons />
+        <div className="max-lg:hidden">
+          <Navbar />
+        </div>
+        <div className="max-lg:hidden">
+          <Buttons />
+        </div>
+
+        <Hamburger />
       </div>
     </div>
   )

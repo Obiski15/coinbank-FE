@@ -5,7 +5,7 @@ function Content() {
         INSIGHTS ABOUT CRYPTO
       </p>
       <div className="space-y-8">
-        <h2 className="text-display-lg font-medium tracking-[0.04rem] text-black">
+        <h2 className="text-display-md font-medium tracking-[0.04rem] text-black md:text-display-lg">
           The Blog
         </h2>
         <p className="text-lg text-neutral-500">
