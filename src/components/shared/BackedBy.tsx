@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import FeatureHeader from "./featureHeader"
+import FeatureHeader from "../landing-pages/home/feature/featureHeader"
 
 export default function BackedBy() {
   return (
