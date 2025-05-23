@@ -1,10 +1,13 @@
 "use client"
 
-import { passwordResetSchema } from "@/schema/settingsSchema"
+import { useState } from "react"
+import { IError } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
 
+import AuthService from "@/app/api/services/auth-services"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -15,18 +18,35 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { passwordUpdateSchema } from "@/schema/settings-schema"
 
 import FormTitleGroup from "../FormTitleGroup"
 
 function PasswordForm() {
-  const form = useForm<z.infer<typeof passwordResetSchema>>({
-    resolver: zodResolver(passwordResetSchema),
+  const form = useForm<z.infer<typeof passwordUpdateSchema>>({
+    resolver: zodResolver(passwordUpdateSchema),
   })
 
+  const [status, setStatus] = useState<"idle" | "loading">("idle")
+
   const _onSubmit: SubmitHandler<
-    z.infer<typeof passwordResetSchema>
-  > = values => {
-    console.log(values)
+    z.infer<typeof passwordUpdateSchema>
+  > = async values => {
+    try {
+      setStatus("loading")
+      await new AuthService().updatePassword(values)
+      form.reset({
+        current_password: "",
+        password: "",
+        confirm_password: "",
+      })
+      toast.success("Password updated successfully")
+    } catch (error) {
+      const err = error as IError
+      toast.error(err.error.message)
+    } finally {
+      setStatus("idle")
+    }
   }
 
   return (
@@ -57,7 +77,7 @@ function PasswordForm() {
             )}
           />
           <FormField
-            name="new_password"
+            name="password"
             control={form.control}
             render={({ field, fieldState: { error } }) => (
               <FormItem className="space-y-2">
@@ -88,7 +108,11 @@ function PasswordForm() {
           />
 
           <div className="py-8">
-            <Button type="submit" className="float-right">
+            <Button
+              type="submit"
+              disabled={!(status === "loading")}
+              className="float-right"
+            >
               Save
             </Button>
           </div>

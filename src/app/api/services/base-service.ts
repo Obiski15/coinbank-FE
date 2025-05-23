@@ -1,8 +1,13 @@
-import { AxiosError, AxiosInstance, AxiosResponse } from "axios"
+import {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from "axios"
 
 import { createAxiosInstance } from "./axiosInstance"
 
-export class BaseService {
+export abstract class BaseService {
   protected clientUrl: string
   protected apiInstance: AxiosInstance
 
@@ -18,47 +23,48 @@ export class BaseService {
       return (await request).data
     } catch (e) {
       if (e instanceof AxiosError) {
-        throw new Error(e.response?.data?.error?.message || e.message)
+        throw e.response?.data
       }
-      throw new Error(
-        "Something went Wrong while trying to process your request"
-      )
+
+      throw e
     }
   }
 
-  public async get<IResponse>(
+  protected async get<IResponse>(
     url: string,
-    params?: Record<string, unknown>
-  ): Promise<IResponse> {
-    return this.handleRequest<IResponse>(this.apiInstance.get(url, { params }))
-  }
-
-  public async post<IRequest, IResponse>(
-    url: string,
-    data?: IRequest,
-    params?: Record<string, unknown>
+    config?: AxiosRequestConfig
   ): Promise<IResponse> {
     return this.handleRequest<IResponse>(
-      this.apiInstance.post(url, data, { params })
+      this.apiInstance.get(url, { ...config })
     )
   }
 
-  public async put<IRequest, IResponse>(
+  protected async post<IRequest, IResponse>(
     url: string,
     data: IRequest,
-    params?: Record<string, unknown>
+    config?: AxiosRequestConfig
   ): Promise<IResponse> {
     return this.handleRequest<IResponse>(
-      this.apiInstance.put(url, data, { params })
+      this.apiInstance.post(url, data, { ...config })
     )
   }
 
-  public async delete<IResponse>(
+  protected async patch<IRequest, IResponse>(
     url: string,
-    params?: Record<string, unknown>
+    data: IRequest,
+    config?: AxiosRequestConfig
   ): Promise<IResponse> {
     return this.handleRequest<IResponse>(
-      this.apiInstance.delete(url, { params })
+      this.apiInstance.patch(url, data, { ...config })
+    )
+  }
+
+  protected async delete<IResponse>(
+    url: string,
+    config?: AxiosRequestConfig
+  ): Promise<IResponse> {
+    return this.handleRequest<IResponse>(
+      this.apiInstance.delete(url, { ...config })
     )
   }
 }

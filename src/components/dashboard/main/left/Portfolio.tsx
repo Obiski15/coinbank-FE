@@ -2,6 +2,7 @@ import Image from "next/image"
 
 import MarketIndicator from "@/components/shared/market-indicator"
 import { Progress } from "@/components/ui/progress"
+
 import { formatCurrency } from "@/lib/utils"
 
 function Portfolio() {

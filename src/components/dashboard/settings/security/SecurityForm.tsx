@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import { securitySchema } from "@/schema/settingsSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm, useWatch } from "react-hook-form"
 import * as z from "zod"
@@ -23,6 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
+import { securitySchema } from "@/schema/settings-schema"
 
 import FormTitleGroup from "../FormTitleGroup"
 

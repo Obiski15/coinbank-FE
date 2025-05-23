@@ -10,7 +10,6 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
 
 import FormTitleGroup from "../FormTitleGroup"
 
@@ -36,8 +35,8 @@ export default function CloseAccount() {
           description="Closing your account can't be undone. Please make sure your account balance is $0.00 before you begin."
         />
         <AlertDialog>
-          <AlertDialogTrigger>
-            <Button variant="outline-error">Close account</Button>
+          <AlertDialogTrigger className="whitespace-nowrap rounded-lg border bg-white px-6 py-2.5 font-medium text-error shadow-sm hover:bg-error/30">
+            Close account
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>Are you absolutely sure?</AlertDialogHeader>

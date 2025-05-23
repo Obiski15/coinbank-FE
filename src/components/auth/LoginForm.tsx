@@ -1,11 +1,17 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { loginSchema } from "@/schema/authSchema"
+import { useRouter } from "next/navigation"
+import { IError } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
+
+import AuthService from "@/app/api/services/auth-services"
+import { loginSchema } from "@/schema/user-schema"
 
 import { Button } from "../ui/button"
 import {
@@ -18,13 +24,31 @@ import {
 } from "../ui/form"
 import { Input } from "../ui/input"
 
-export default function LoginForm() {
+export default function LoginForm({
+  redirect,
+}: {
+  redirect: string | undefined
+}) {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
   })
+  const router = useRouter()
+  const [status, setStatus] = useState<"idle" | "loading">("idle")
 
-  const _onSubmit: SubmitHandler<z.infer<typeof loginSchema>> = values => {
-    console.log(values)
+  const _onSubmit: SubmitHandler<
+    z.infer<typeof loginSchema>
+  > = async values => {
+    try {
+      setStatus("loading")
+      await new AuthService().login(values)
+      router.push(redirect || "/dashboard")
+      toast.success("Login successfull", { position: "top-center" })
+    } catch (error) {
+      const err = error as IError
+      toast.error(err.error.message)
+    } finally {
+      setStatus("idle")
+    }
   }
 
   return (
@@ -47,9 +71,7 @@ export default function LoginForm() {
                     className="px-6 py-3"
                   />
                 </FormControl>
-                <FormMessage className="text-sm font-medium text-error">
-                  {error?.message}
-                </FormMessage>
+                <FormMessage>{error?.message}</FormMessage>
               </FormItem>
             )}
           />
@@ -69,9 +91,7 @@ export default function LoginForm() {
                     className="px-6 py-3"
                   />
                 </FormControl>
-                <FormMessage className="text-sm font-medium text-error">
-                  {error?.message}
-                </FormMessage>
+                <FormMessage>{error?.message}</FormMessage>
               </FormItem>
             )}
           />
@@ -87,11 +107,16 @@ export default function LoginForm() {
 
         <div className="space-y-[60px]">
           <div className="space-y-4">
-            <Button className="w-full" type="submit">
+            <Button
+              disabled={status === "loading"}
+              className="w-full"
+              type="submit"
+            >
               Sign in
             </Button>
             <Button
               type="button"
+              disabled={status === "loading"}
               className="w-full"
               variant="outline"
               Icon={
@@ -107,6 +132,7 @@ export default function LoginForm() {
             </Button>
             <Button
               type="button"
+              disabled={status === "loading"}
               className="w-full"
               variant="outline"
               Icon={

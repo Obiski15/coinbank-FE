@@ -1,6 +1,5 @@
 "use client"
 
-import { notificationsSchema } from "@/schema/settingsSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm } from "react-hook-form"
 import * as z from "zod"
@@ -14,6 +13,7 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form"
+import { notificationsSchema } from "@/schema/settings-schema"
 
 export default function NotificationsForm() {
   const form = useForm<z.infer<typeof notificationsSchema>>({

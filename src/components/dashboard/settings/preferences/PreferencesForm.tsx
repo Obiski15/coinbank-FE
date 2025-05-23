@@ -1,6 +1,5 @@
 "use client"
 
-import { preferencesSchema } from "@/schema/settingsSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubmitHandler, useForm } from "react-hook-form"
 import * as z from "zod"
@@ -21,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { preferencesSchema } from "@/schema/settings-schema"
 
 import FormTitleGroup from "../FormTitleGroup"
 

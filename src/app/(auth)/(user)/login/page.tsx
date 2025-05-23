@@ -7,7 +7,13 @@ export const metadata: Metadata = {
   title: "Login",
 }
 
-export default function Login() {
+type Props = {
+  searchParams: Promise<{ [key: string]: string | undefined }>
+}
+
+export default async function Login({ searchParams }: Props) {
+  const { redirect } = await searchParams
+
   return (
     <div className="col-span-5 h-full p-20">
       <div className="space-y-10">
@@ -22,7 +28,7 @@ export default function Login() {
             </p>
           </div>
         </div>
-        <LoginForm />
+        <LoginForm redirect={redirect} />
       </div>
     </div>
   )

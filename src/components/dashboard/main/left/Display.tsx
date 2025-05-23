@@ -1,6 +1,7 @@
 import Image from "next/image"
 
 import MarketIndicator from "@/components/shared/market-indicator"
+
 import { formatCurrency } from "@/lib/utils"
 
 export default function Display() {

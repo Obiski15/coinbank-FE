@@ -5,6 +5,8 @@ import "./globals.css"
 
 import ReactQueryProvider from "@/providers/ReactQueryProvider"
 
+import { Toaster } from "@/components/ui/sonner"
+
 const aeonik = localFont({
   src: "./fonts/aeonik.otf",
   display: "swap",
@@ -24,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${aeonik.className} antialiased`}>
         <ReactQueryProvider>
+          <Toaster position="bottom-right" />
           {/* <WagmiProvider>
             <RainbowKitProvider> */}
           {children}

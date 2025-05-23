@@ -1,11 +1,14 @@
 "use client"
 
-import { useRef, useState } from "react"
-import { profileSchema } from "@/schema/settingsSchema"
+import { useEffect, useRef, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
-import { SubmitHandler, useForm } from "react-hook-form"
+import isEqual from "lodash/isEqual"
+import { SubmitHandler, useForm, useWatch } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
 
+import UserService from "@/app/api/services/user-service"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import {
@@ -29,29 +32,89 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { profileSchema } from "@/schema/settings-schema"
+
 import { cn } from "@/lib/utils"
 
 import FormTitleGroup from "../FormTitleGroup"
 
+// dummy data from db
+const defaultFieldValues = {
+  email: "obiski15@gmail.com",
+  display_name: "ObiskiXDev",
+  personal: {
+    first_name: "Emmanuel",
+    last_name: "Obi",
+    dob: new Date(),
+    country: "SA",
+  },
+}
+
 export default function ProfileForm() {
+  const form = useForm<z.infer<typeof profileSchema>>({
+    resolver: zodResolver(profileSchema),
+    defaultValues: {
+      ...defaultFieldValues,
+    },
+    mode: "onChange",
+  })
   const [imagePreview, setImagePreview] = useState<string>("")
-  const form = useForm<z.infer<typeof profileSchema>>()
+  const abortControllerRef = useRef<AbortController>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const imageRef = useRef<HTMLInputElement>(null)
   // image should be from DB
-  const [image] = useState<string>("")
+  const [image] = useState<string>(
+    "https://res.cloudinary.com/dm5t6k3ks/image/upload/v1747984030/coinbank/coinbank.jpg"
+  )
 
   function handleImageChange(image: File | null) {
-    if (!image) return
-
-    setImagePreview(URL.createObjectURL(image))
+    if (image) {
+      setImagePreview(URL.createObjectURL(image))
+    }
   }
 
+  const watchedFieldValues = useWatch({
+    control: form.control,
+  })
+
+  function handleFieldBlur() {
+    form.handleSubmit(_onSubmit)()
+  }
+
+  useEffect(() => {
+    // execute if timeout is still active
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+    // execute if timeout is no longer active and request is ongoing
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+  }, [watchedFieldValues])
+
+  useEffect(() => {
+    if (watchedFieldValues.image) {
+      handleFieldBlur()
+    }
+  }, [watchedFieldValues.image])
+
   const _onSubmit: SubmitHandler<z.infer<typeof profileSchema>> = values => {
-    console.log(values)
+    if (
+      !Object.values(form.formState.errors).length &&
+      !isEqual(defaultFieldValues, values)
+    ) {
+      timeoutRef.current = setTimeout(async () => {
+        abortControllerRef.current = new AbortController()
+        await new UserService().updateUser(values, {
+          signal: abortControllerRef.current.signal,
+        })
+        toast.success("Field(s) Updated!")
+      }, 2000)
+    }
   }
 
   return (
-    <form className="space-y-6" onSubmit={form.handleSubmit(_onSubmit)}>
+    <form className="space-y-6">
       <Form {...form}>
         <div className="flex items-start justify-between gap-8">
           <FormTitleGroup
@@ -86,22 +149,36 @@ export default function ProfileForm() {
               </div>
 
               <div>
-                <input
-                  hidden
-                  type="file"
-                  accept="image/*"
-                  ref={imageRef}
-                  onChange={e => handleImageChange(e.currentTarget.files![0])}
+                <FormField
+                  name="image"
+                  control={form.control}
+                  render={({ field, fieldState: { error } }) => (
+                    <FormItem>
+                      <FormControl>
+                        <input
+                          hidden
+                          type="file"
+                          accept="image/*"
+                          ref={imageRef}
+                          onChange={e => {
+                            field.onChange(e.currentTarget.files![0])
+                            handleImageChange(e.currentTarget.files![0])
+                          }}
+                        />
+                      </FormControl>
+                      <Button
+                        type="button"
+                        variant="outline-primary"
+                        onClick={() => {
+                          imageRef.current?.click()
+                        }}
+                      >
+                        Upload photo
+                      </Button>
+                      <FormMessage>{error?.message}</FormMessage>
+                    </FormItem>
+                  )}
                 />
-                <Button
-                  type="button"
-                  variant="outline-primary"
-                  onClick={() => {
-                    imageRef.current?.click()
-                  }}
-                >
-                  Upload photo
-                </Button>
               </div>
             </div>
 
@@ -115,7 +192,14 @@ export default function ProfileForm() {
                       Display name
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter Display Name" {...field} />
+                      <Input
+                        placeholder="Enter Display Name"
+                        {...field}
+                        onBlur={() => {
+                          field.onBlur()
+                          handleFieldBlur()
+                        }}
+                      />
                     </FormControl>
                     <FormMessage>{error?.message}</FormMessage>
                   </FormItem>
@@ -131,6 +215,7 @@ export default function ProfileForm() {
                     </FormLabel>
                     <FormControl>
                       <Input
+                        readOnly
                         placeholder="Enter Email Address"
                         type="email"
                         {...field}
@@ -154,7 +239,7 @@ export default function ProfileForm() {
             <div className="space-y-6 p-8">
               <div className="flex items-center justify-start gap-6">
                 <FormField
-                  name="first_name"
+                  name="personal.first_name"
                   control={form.control}
                   render={({ field, fieldState: { error } }) => (
                     <FormItem className="flex-1 space-y-2">
@@ -162,14 +247,21 @@ export default function ProfileForm() {
                         First name
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter first name" {...field} />
+                        <Input
+                          placeholder="Enter first name"
+                          {...field}
+                          onBlur={() => {
+                            field.onBlur()
+                            handleFieldBlur()
+                          }}
+                        />
                       </FormControl>
                       <FormMessage>{error?.message}</FormMessage>
                     </FormItem>
                   )}
                 />
                 <FormField
-                  name="last_name"
+                  name="personal.last_name"
                   control={form.control}
                   render={({ field, fieldState: { error } }) => (
                     <FormItem className="flex-1 space-y-2">
@@ -177,7 +269,14 @@ export default function ProfileForm() {
                         Last name
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter last name" {...field} />
+                        <Input
+                          placeholder="Enter last name"
+                          {...field}
+                          onBlur={() => {
+                            field.onBlur()
+                            handleFieldBlur()
+                          }}
+                        />
                       </FormControl>
                       <FormMessage>{error?.message}</FormMessage>
                     </FormItem>
@@ -186,7 +285,7 @@ export default function ProfileForm() {
               </div>
 
               <FormField
-                name="dob"
+                name="personal.dob"
                 control={form.control}
                 render={({ field, fieldState: { error } }) => (
                   <Popover>
@@ -215,6 +314,7 @@ export default function ProfileForm() {
                         <Calendar
                           mode="single"
                           onSelect={field.onChange}
+                          onDayBlur={handleFieldBlur}
                           selected={field.value}
                           disabled={date => date > new Date()}
                         />
@@ -224,7 +324,7 @@ export default function ProfileForm() {
                 )}
               />
               <FormField
-                name="country"
+                name="personal.country"
                 control={form.control}
                 render={({ field, fieldState: { error } }) => (
                   <FormItem className="space-y-2">
@@ -236,7 +336,7 @@ export default function ProfileForm() {
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger onBlur={handleFieldBlur}>
                           <SelectValue placeholder="Select country of residence" />
                         </SelectTrigger>
                         <SelectContent>

@@ -4,6 +4,7 @@ import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 
 import Logo from "@/components/Logo"
+
 import { cn } from "@/lib/utils"
 
 const pages: { page: string; icon: string }[] = [
