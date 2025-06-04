@@ -110,7 +110,7 @@ function PasswordForm() {
           <div className="py-8">
             <Button
               type="submit"
-              disabled={!(status === "loading")}
+              disabled={status === "loading"}
               className="float-right"
             >
               Save

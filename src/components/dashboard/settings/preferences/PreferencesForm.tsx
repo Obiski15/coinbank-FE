@@ -100,8 +100,8 @@ export default function PreferencesForm() {
           />
         </div>
 
-        <div className="py-8">
-          <Button className="float-right">Save</Button>
+        <div className="flex items-center justify-end py-8">
+          <Button type="submit">Save</Button>
         </div>
       </Form>
     </form>

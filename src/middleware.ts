@@ -17,11 +17,11 @@ export async function middleware(request: NextRequest) {
       // consistent API base path to avoid cross-domain cookies issues by routing through the same origin.
       // check next.config
 
-      `http://127.0.0.1:${process.env.PORT}/api/v1/user`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/user`,
       {
         withCredentials: true,
         headers: {
-          // including authorization just incase
+          // including authorization header just incase
           Authorization: `Bearer ${token}`,
         },
       }

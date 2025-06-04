@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
-import { CircleHelp } from "lucide-react"
 
 import Header from "@/components/dashboard/settings/Header"
 import Sidebar from "@/components/dashboard/settings/sidebar/Sidebar"
+import FaqLinkIcon from "@/components/dashboard/shared/FaqLinkIcon"
+import Main from "@/components/dashboard/shared/Main"
 
 export const metadata: Metadata = {
   title: "Coinbank | Dashboard",
@@ -15,20 +16,18 @@ export default function DashboardLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="max-h-screen overflow-hidden border-2">
-        <div className="grid grid-cols-12 items-start justify-start overflow-hidden">
+    <html lang="en" className="overflow-hidden">
+      <body className="max-h-screen">
+        <div className="grid h-screen grid-cols-12 items-start justify-start overflow-hidden">
           <Sidebar />
 
           <div className="col-span-10">
             <Header />
-            {children}
 
-            <div className="p-8 pb-16">
-              <div className="float-right flex size-10 w-fit items-center justify-center rounded-full p-2 shadow-[0px_0px_8px_0px_#5235E81A]">
-                <CircleHelp className="size-6 text-primary" />
-              </div>
-            </div>
+            <Main className="space-y-6 p-8">
+              {children}
+              <FaqLinkIcon />
+            </Main>
           </div>
         </div>
       </body>

@@ -1,4 +1,4 @@
-import { boolean, custom, date, object, string } from "zod"
+import { boolean, coerce, custom, object, string } from "zod"
 
 export const passwordUpdateSchema = object({
   current_password: string({
@@ -68,7 +68,7 @@ export const profileSchema = object({
 
   image: custom<File>()
     .optional()
-    .refine(file => !file || file.type.startsWith("image/"), {
+    .refine(file => !file || file?.type?.startsWith("image/"), {
       message: "Only images are allowed to be sent",
     })
     .refine(file => !file || file.size <= 5 * 1024 * 1024, {
@@ -91,7 +91,7 @@ export const profileSchema = object({
     country: string({ required_error: "Please select your country" }).min(1, {
       message: "Please provide a valid country name",
     }),
-    dob: date({
+    dob: coerce.date({
       required_error: "Kindly select your date of birth",
       invalid_type_error: "Invalid date format",
     }),

@@ -25,7 +25,7 @@ export default class UserService extends BaseService {
           formData.append(
             `${key}.${personalKey}`,
             personalValue instanceof Date
-              ? personalValue.toISOString()
+              ? personalValue.toDateString()
               : personalValue
           )
         })

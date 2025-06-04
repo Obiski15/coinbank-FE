@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/form"
 import { notificationsSchema } from "@/schema/settings-schema"
 
+import FormTitleGroup from "../FormTitleGroup"
+
 export default function NotificationsForm() {
   const form = useForm<z.infer<typeof notificationsSchema>>({
     resolver: zodResolver(notificationsSchema),
@@ -32,85 +34,92 @@ export default function NotificationsForm() {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(_onSubmit)} className="w-[70%]">
+    <form onSubmit={form.handleSubmit(_onSubmit)}>
       <Form {...form}>
-        <div className="space-y-6 border-b border-neutral-200 p-8">
-          <div className="flex items-center justify-between gap-4 text-sm font-medium">
-            <p className="text-neutral-900">Email</p>
-            <button
-              className="text-primary hover:underline"
-              onClick={() =>
-                form.reset({
-                  merchantOrder: false,
-                  alert: false,
-                  recommendations: false,
-                })
-              }
-            >
-              Clear all
-            </button>
-          </div>
+        <div className="flex items-start justify-between">
+          <FormTitleGroup
+            title="Manage"
+            description="Manage how you receive notifications"
+          />
 
-          <div className="space-y-4">
-            <FormField
-              name="alert"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem className="flex items-center justify-start gap-2 space-y-0">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormLabel className="text-sm font-normal text-neutral-900">
-                    When I receive merchant orders
-                  </FormLabel>
-                </FormItem>
-              )}
-            />
+          <div className="w-[70%] space-y-6 border-b border-neutral-200 p-8">
+            <div className="flex items-center justify-between gap-4 text-sm font-medium">
+              <p className="text-neutral-900">Email</p>
+              <button
+                className="text-primary hover:underline"
+                onClick={() =>
+                  form.reset({
+                    merchantOrder: false,
+                    alert: false,
+                    recommendations: false,
+                  })
+                }
+              >
+                Clear all
+              </button>
+            </div>
 
-            <FormField
-              name="merchantOrder"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem className="flex items-center justify-start gap-2 space-y-0">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormLabel className="text-sm font-normal text-neutral-900">
-                    When I send or receive crypto
-                  </FormLabel>
-                </FormItem>
-              )}
-            />
+            <div className="space-y-4">
+              <FormField
+                name="alert"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="flex items-center justify-start gap-2 space-y-0">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormLabel className="text-sm font-normal text-neutral-900">
+                      When I receive merchant orders
+                    </FormLabel>
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              name="recommendations"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem className="flex items-center justify-start gap-2 space-y-0">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormLabel className="text-sm font-normal text-neutral-900">
-                    When there are recommended actions for my account
-                  </FormLabel>
-                </FormItem>
-              )}
-            />
+              <FormField
+                name="merchantOrder"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="flex items-center justify-start gap-2 space-y-0">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormLabel className="text-sm font-normal text-neutral-900">
+                      When I send or receive crypto
+                    </FormLabel>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                name="recommendations"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="flex items-center justify-start gap-2 space-y-0">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormLabel className="text-sm font-normal text-neutral-900">
+                      When there are recommended actions for my account
+                    </FormLabel>
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
         </div>
 
-        <Button className="float-right mt-8" type="submit">
-          Save
-        </Button>
+        <div className="flex items-center justify-end py-8">
+          <Button type="submit">Save</Button>
+        </div>
       </Form>
     </form>
   )

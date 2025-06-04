@@ -1,11 +1,10 @@
 import Image from "next/image"
 
-import Main from "../shared/Main"
 import ConnectWallet from "./connect-wallet"
 
 export default function NoWallet() {
   return (
-    <Main className="flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-8">
         <div className="size-40 rounded-xl bg-neutral-50 p-[30px]">
           <div className="size-[100px] rounded-xl border border-primary-100 bg-primary-50 p-2.5">
@@ -32,6 +31,6 @@ export default function NoWallet() {
           <ConnectWallet />
         </div>
       </div>
-    </Main>
+    </div>
   )
 }

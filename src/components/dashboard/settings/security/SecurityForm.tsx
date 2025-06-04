@@ -169,9 +169,9 @@ export default function SecurityForm() {
           </div>
         </div>
 
-        <Button type="submit" className="float-right">
-          Save
-        </Button>
+        <div className="flex items-center justify-end py-8">
+          <Button type="submit">Save</Button>
+        </div>
       </Form>
     </form>
   )
