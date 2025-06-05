@@ -7,7 +7,13 @@ export const metadata: Metadata = {
   title: "Signup",
 }
 
-export default function Register() {
+type Props = {
+  searchParams: Promise<{ [key: string]: string }>
+}
+
+export default async function Register({ searchParams }: Props) {
+  const { address } = await searchParams
+
   return (
     <div className="col-span-5 h-full p-20">
       <div className="space-y-10">
@@ -22,7 +28,7 @@ export default function Register() {
             </p>
           </div>
         </div>
-        <SignupForm />
+        <SignupForm email={address} />
       </div>
     </div>
   )

@@ -14,10 +14,11 @@ function AssetsAdded() {
   return (
     <div className="bg-primary-50 px-40">
       <div className="flex items-center justify-between gap-6 rounded-3xl bg-black bg-[url('/icons/landing-pages/home/envelope.svg')] bg-right-top bg-no-repeat px-20 py-12">
-        <div>
+        <div className="relative">
           {icons.map((src, i) => {
             return (
               <Image
+                style={{ right: i > 0 ? i * 4 : 0 }}
                 key={i}
                 alt={src.split("/").at(-1)!.split(".")[0]}
                 width={48}

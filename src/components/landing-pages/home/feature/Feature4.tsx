@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 import Feature from "./Feature"
 
 export default function Feature4() {
@@ -27,11 +29,17 @@ export default function Feature4() {
         </div>
       </div>
 
-      <div className="grid grid-cols-5 items-start justify-between gap-16">
-        <div className="col-span-3 border-2">display chart</div>
+      <div className="grid grid-cols-5 items-start justify-start gap-16">
+        <Image
+          width={640}
+          height={402}
+          src="/images/landing-pages/home/seamless-trading-chart.png"
+          alt="seamless trading chart"
+          className="col-span-3"
+        />
 
-        <div className="col-span-2 space-y-10 border-2">
-          <div className="flex items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-black px-8 py-4">
+        <div className="col-span-2 space-y-10">
+          {/* <div className="flex items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-black px-8 py-4">
             <div className="flex items-center justify-between gap-12">
               <div className="space-y-1">
                 <p className="text-sm font-medium text-white">8888</p>
@@ -48,8 +56,23 @@ export default function Feature4() {
             </div>
 
             <div className="text-white">select</div>
+          </div> */}
+
+          <div className="space-y-10">
+            <Image
+              width={416}
+              height={72}
+              src="/images/landing-pages/home/trade-select.png"
+              alt="trading dropdown"
+            />
+
+            <Image
+              width={416}
+              height={290}
+              src="/images/landing-pages/home/watchlist.png"
+              alt="trading watchlist"
+            />
           </div>
-          <div></div>
         </div>
       </div>
     </Feature>

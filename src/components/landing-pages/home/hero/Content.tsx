@@ -1,8 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import GetStarted from "./get-started"
 
 export default function Content() {
   return (
@@ -11,7 +10,7 @@ export default function Content() {
         <div className="w-[47%] space-y-12">
           <div className="space-y-6">
             <Link
-              href=""
+              href="/login"
               className="text-sm font-medium uppercase text-primary hover:underline"
             >
               sign in to your secure wallet
@@ -26,10 +25,7 @@ export default function Content() {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-between gap-4">
-            <Input placeholder="Your email address" className="flex-1" />
-            <Button>Get started</Button>
-          </div>
+          <GetStarted />
         </div>
 
         <div className="h-[480px] w-[53%] bg-primary-400 bg-hero-content-gradient">

@@ -24,9 +24,12 @@ import {
 } from "../ui/form"
 import { Input } from "../ui/input"
 
-export default function SignupForm() {
+export default function SignupForm({ email }: { email?: string }) {
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
+    defaultValues: {
+      email,
+    },
   })
   const router = useRouter()
   const [status, setStatus] = useState<"idle" | "loading">("idle")
