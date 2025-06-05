@@ -13,6 +13,7 @@ import * as z from "zod"
 import AuthService from "@/app/api/services/auth-services"
 import { loginSchema } from "@/schema/user-schema"
 
+import Loader from "../shared/loader"
 import { Button } from "../ui/button"
 import {
   Form,
@@ -112,6 +113,7 @@ export default function LoginForm({
               className="w-full"
               type="submit"
             >
+              {status === "loading" && <Loader />}
               Sign in
             </Button>
             <Button

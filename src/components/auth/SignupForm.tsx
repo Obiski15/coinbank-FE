@@ -13,6 +13,7 @@ import * as z from "zod"
 import AuthService from "@/app/api/services/auth-services"
 import { signupSchema } from "@/schema/user-schema"
 
+import Loader from "../shared/loader"
 import { Button } from "../ui/button"
 import {
   Form,
@@ -142,7 +143,7 @@ export default function SignupForm({ email }: { email?: string }) {
               className="w-full"
               type="submit"
             >
-              Create Account
+              {status === "loading" && <Loader />} Create Account
             </Button>
             <Button
               type="button"

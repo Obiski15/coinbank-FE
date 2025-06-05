@@ -11,6 +11,7 @@ import { z } from "zod"
 import AuthService from "@/app/api/services/auth-services"
 import { forgotPasswordSchema } from "@/schema/user-schema"
 
+import Loader from "../shared/loader"
 import { Button } from "../ui/button"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form"
 import { Input } from "../ui/input"
@@ -65,7 +66,7 @@ function ForgotPasswordForm({
             )}
           />
           <Button className="w-full" disabled={status === "loading"}>
-            Reset Password
+            {status === "loading" && <Loader />} Reset Password
           </Button>
         </div>
       </Form>

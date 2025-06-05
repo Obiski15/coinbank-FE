@@ -8,6 +8,7 @@ import { toast } from "sonner"
 import * as z from "zod"
 
 import AuthService from "@/app/api/services/auth-services"
+import Loader from "@/components/shared/loader"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -113,7 +114,7 @@ function PasswordForm() {
               disabled={status === "loading"}
               className="float-right"
             >
-              Save
+              {status === "loading" ? <Loader /> : "Save"}
             </Button>
           </div>
         </Form>
