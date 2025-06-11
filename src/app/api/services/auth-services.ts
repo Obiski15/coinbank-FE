@@ -9,8 +9,9 @@ import {
 import { BaseService } from "./base-service"
 
 class AuthService extends BaseService {
+  protected authProviderBaseUrl: string = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth`
   constructor() {
-    super("user/auth")
+    super("auth")
   }
 
   async register(data: IRegister) {
@@ -35,6 +36,14 @@ class AuthService extends BaseService {
 
   async updatePassword(data: IUpdatePassword) {
     return await this.patch<IUpdatePassword, unknown>("/password", { ...data })
+  }
+
+  googleAuth() {
+    window.location.assign(`${this.authProviderBaseUrl}/google`)
+  }
+
+  facebookAuth() {
+    window.location.assign(`${this.authProviderBaseUrl}/facebook`)
   }
 }
 

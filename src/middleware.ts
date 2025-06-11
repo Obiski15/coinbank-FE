@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
       // consistent API base path to avoid cross-domain cookies issues by routing through the same origin.
       // check next.config
 
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/user`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/user`,
       {
         withCredentials: true,
         headers: {

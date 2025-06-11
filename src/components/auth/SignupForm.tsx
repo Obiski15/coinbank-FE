@@ -26,6 +26,7 @@ import {
 import { Input } from "../ui/input"
 
 export default function SignupForm({ email }: { email?: string }) {
+  const authService = new AuthService()
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -40,7 +41,7 @@ export default function SignupForm({ email }: { email?: string }) {
   > = async values => {
     try {
       setStatus("loading")
-      await new AuthService().register(values)
+      await authService.register(values)
       router.push("/login")
       toast.success("Account created successfully", { position: "top-center" })
     } catch (error) {
@@ -150,6 +151,7 @@ export default function SignupForm({ email }: { email?: string }) {
               disabled={status === "loading"}
               className="w-full"
               variant="outline"
+              onClick={() => authService.googleAuth()}
               Icon={
                 <Image
                   width={24}
@@ -166,6 +168,7 @@ export default function SignupForm({ email }: { email?: string }) {
               disabled={status === "loading"}
               className="w-full"
               variant="outline"
+              onClick={() => authService.facebookAuth()}
               Icon={
                 <Image
                   width={24}

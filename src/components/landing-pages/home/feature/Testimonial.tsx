@@ -50,7 +50,7 @@ export default function Testimonial() {
         {ratings.map(({ review, numRating, occupation, image, name }, i) => (
           <div
             key={name}
-            className="flex flex-col items-center justify-center gap-12 rounded-2xl bg-white p-12 pb-[52px]"
+            className="flex h-full flex-col items-center justify-between gap-12 rounded-2xl bg-white p-12 pb-[52px]"
           >
             <Ratings numRating={numRating} />
 

@@ -30,6 +30,7 @@ export default function LoginForm({
 }: {
   redirect: string | undefined
 }) {
+  const authService = new AuthService()
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
   })
@@ -41,7 +42,7 @@ export default function LoginForm({
   > = async values => {
     try {
       setStatus("loading")
-      await new AuthService().login(values)
+      await authService.login(values)
       router.push(redirect || "/dashboard")
       toast.success("Login successfull", { position: "top-center" })
     } catch (error) {
@@ -121,6 +122,7 @@ export default function LoginForm({
               disabled={status === "loading"}
               className="w-full"
               variant="outline"
+              onClick={() => authService.googleAuth()}
               Icon={
                 <Image
                   width={24}
@@ -137,6 +139,7 @@ export default function LoginForm({
               disabled={status === "loading"}
               className="w-full"
               variant="outline"
+              onClick={() => authService.facebookAuth()}
               Icon={
                 <Image
                   width={24}
