@@ -1,6 +1,8 @@
 import { IUpdateUser, IUserResponse } from "@/types"
 import { AxiosRequestConfig } from "axios"
 
+import { formatZuluISO } from "@/lib/helpers"
+
 import { BaseService } from "./base-service"
 
 export default class UserService extends BaseService {
@@ -25,7 +27,7 @@ export default class UserService extends BaseService {
           formData.append(
             `${key}.${personalKey}`,
             personalValue instanceof Date
-              ? personalValue.toDateString()
+              ? formatZuluISO(personalValue)
               : personalValue
           )
         })

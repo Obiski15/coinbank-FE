@@ -91,6 +91,7 @@ export const profileSchema = object({
     country: string({ required_error: "Please select your country" }).min(1, {
       message: "Please provide a valid country name",
     }),
+
     dob: coerce.date({
       required_error: "Kindly select your date of birth",
       invalid_type_error: "Invalid date format",

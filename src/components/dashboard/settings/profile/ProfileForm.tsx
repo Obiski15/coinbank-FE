@@ -35,6 +35,7 @@ import {
 import ProfileFormSkeleton from "@/components/ui/skeleton/ProfileFormSkeleton"
 import { profileSchema } from "@/schema/settings-schema"
 
+import { formatZuluISO } from "@/lib/helpers"
 import { cn } from "@/lib/utils"
 import { useUser } from "@/hooks/useUser"
 
@@ -42,6 +43,7 @@ import FormTitleGroup from "../FormTitleGroup"
 import CloseAccount from "./CloseAccount"
 
 export default function ProfileForm() {
+  const { data: user, error, isLoading: isUserLoading, refetch } = useUser()
   const form = useForm<z.infer<typeof profileSchema>>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
@@ -51,7 +53,6 @@ export default function ProfileForm() {
       personal: {
         first_name: "",
         last_name: "",
-        dob: new Date(),
         country: "NGN",
       },
     },
@@ -61,17 +62,12 @@ export default function ProfileForm() {
   const abortControllerRef = useRef<AbortController>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const imageRef = useRef<HTMLInputElement>(null)
-  const { data: user, error, isLoading: isUserLoading } = useUser()
 
   function handleImageChange(image: File | null) {
     if (image) {
       setImagePreview(URL.createObjectURL(image))
     }
   }
-
-  // const handleFieldBlur = useCallback(() => {
-  //   form.handleSubmit(_onSubmit)()
-  // }, [])
 
   function handleFieldBlur() {
     form.handleSubmit(_onSubmit)()
@@ -102,7 +98,7 @@ export default function ProfileForm() {
     if (user) {
       const filteredObject = Object.keys(user.data.user)
         .filter(
-          (key): key is Exclude<keyof typeof user.data.user, "image"> =>
+          (key): key is Exclude<keyof typeof user.data.user, "image" | "_id"> =>
             key !== "image"
         )
         .reduce(
@@ -113,24 +109,48 @@ export default function ProfileForm() {
           {} as Record<string, unknown>
         )
 
-      form.reset({ ...filteredObject })
+      form.reset({
+        ...filteredObject,
+      })
     }
   }, [user, form])
 
   const _onSubmit: SubmitHandler<z.infer<typeof profileSchema>> = values => {
-    // modify - compare exact values
-    if (!isEqual(user?.data.user, values)) {
+    //compare exact values before submitting
+    const userProfileData = (
+      Object.keys(values) as (keyof typeof values)[]
+    ).reduce(
+      (acc, key) => {
+        acc[key] = user?.data.user[key]
+        return acc
+      },
+      {} as Record<string, unknown>
+    )
+
+    const formValues = {
+      ...values,
+      image: values.image ?? userProfileData.image,
+      personal: {
+        ...values.personal,
+        dob: values.personal.dob
+          ? formatZuluISO(values.personal.dob)
+          : undefined,
+      },
+    }
+
+    console.log(userProfileData, formValues)
+    if (!isEqual(userProfileData, formValues)) {
       timeoutRef.current = setTimeout(async () => {
         abortControllerRef.current = new AbortController()
         await new UserService().updateUser(values, {
           signal: abortControllerRef.current.signal,
         })
         toast.success("Field(s) Updated!")
+        refetch()
       }, 2000)
     }
     return
   }
-
   if (isUserLoading) return <ProfileFormSkeleton />
 
   if (error) throw error
@@ -163,10 +183,10 @@ export default function ProfileForm() {
 
                   <div className="space-y-0.5">
                     <h4 className="text-2xl font-medium tracking-[0.015rem] text-[#000000]">
-                      Obi Emmanuel
+                      {user?.data?.user?.display_name ?? "user"}
                     </h4>
                     <p className="text-lg font-normal text-neutral-500">
-                      obiski15@gmail.com
+                      {user?.data.user.email ?? "user@gmail.com"}
                     </p>
                   </div>
                 </div>
