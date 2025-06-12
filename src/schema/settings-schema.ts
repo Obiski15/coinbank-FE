@@ -72,7 +72,7 @@ export const profileSchema = object({
       message: "Only images are allowed to be sent",
     })
     .refine(file => !file || file.size <= 5 * 1024 * 1024, {
-      message: "Profile picture must be a maximum of 5MB",
+      message: "Profile picture must be a minimum of 5MB",
     }),
 
   personal: object({

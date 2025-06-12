@@ -92,7 +92,7 @@ export default function ProfileForm() {
     if (watchedFieldValues.image) {
       handleFieldBlur()
     }
-  }, [imagePreview, handleFieldBlur])
+  }, [imagePreview])
 
   useEffect(() => {
     if (user) {
