@@ -62,6 +62,7 @@ export default function ProfileForm() {
   const abortControllerRef = useRef<AbortController>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const imageRef = useRef<HTMLInputElement>(null)
+  const initials = `${user?.data.user.personal?.first_name?.split("")[0]}${user?.data.user.personal?.last_name?.split("")[0]}`
 
   function handleImageChange(image: File | null) {
     if (image) {
@@ -177,7 +178,7 @@ export default function ProfileForm() {
                     <p
                       className={`text-display-sm font-medium tracking-[0.02rem] text-white [text-shadow:0px_4px_4px_0px_#A191F34D]`}
                     >
-                      {!user?.data?.user?.image && !imagePreview && "AB"}
+                      {!user?.data?.user?.image && !imagePreview && initials}
                     </p>
                   </div>
 

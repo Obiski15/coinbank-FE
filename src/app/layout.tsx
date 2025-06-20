@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${aeonik.className} antialiased`}>
+      <body className={`${aeonik.className} no_scrollbar antialiased`}>
         <ReactQueryProvider>
           <Toaster position="bottom-right" />
           {/* <WagmiProvider>

@@ -5,13 +5,15 @@ import axios, { AxiosError } from "axios"
 import { IError } from "./types"
 
 export async function middleware(request: NextRequest) {
-  // get jwt token from cookie
-  const token = (await cookies()).get("jwt")?.value
+  // get refreshToken from cookies
+  const refreshToken = (await cookies()).get("refreshToken")?.value
+  const accessToken = (await cookies()).get("accessToken")?.value
 
-  // redirect if there is no token
-  if (!token) return NextResponse.redirect(new URL("/login", request.nextUrl))
+  // redirect user to login if token isn't available
+  if (!refreshToken)
+    return NextResponse.redirect(new URL("/login", request.nextUrl))
 
-  // get user sesssion
+  // get user session
   try {
     await axios.get(
       // consistent API base path to avoid cross-domain cookies issues by routing through the same origin.
@@ -21,8 +23,8 @@ export async function middleware(request: NextRequest) {
       {
         withCredentials: true,
         headers: {
-          // including authorization header just incase
-          Authorization: `Bearer ${token}`,
+          refreshToken: `Bearer ${refreshToken}`,
+          accessToken: `Bearer ${accessToken}`,
         },
       }
     )

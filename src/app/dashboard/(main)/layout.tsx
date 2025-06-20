@@ -14,17 +14,15 @@ export default function DashboardLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="max-h-screen overflow-hidden border-2">
-        <div className="grid grid-cols-12 items-start justify-start overflow-hidden">
-          <Sidebar />
+    <div className="max-h-screen overflow-hidden">
+      <div className="grid grid-cols-12 items-start justify-start overflow-hidden">
+        <Sidebar />
 
-          <div className="col-span-10">
-            <Header />
-            {children}
-          </div>
+        <div className="col-span-10">
+          <Header />
+          {children}
         </div>
-      </body>
-    </html>
+      </div>
+    </div>
   )
 }

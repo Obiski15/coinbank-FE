@@ -16,21 +16,17 @@ export default function DashboardLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="overflow-hidden">
-      <body className="max-h-screen">
-        <div className="grid h-screen grid-cols-12 items-start justify-start overflow-hidden">
-          <Sidebar />
+    <div className="grid h-screen grid-cols-12 items-start justify-start overflow-hidden">
+      <Sidebar />
 
-          <div className="col-span-10">
-            <Header />
+      <div className="col-span-10">
+        <Header />
 
-            <Main className="space-y-6 p-8">
-              {children}
-              <FaqLinkIcon />
-            </Main>
-          </div>
-        </div>
-      </body>
-    </html>
+        <Main className="space-y-6 p-8">
+          {children}
+          <FaqLinkIcon />
+        </Main>
+      </div>
+    </div>
   )
 }
