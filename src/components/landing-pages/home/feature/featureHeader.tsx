@@ -21,7 +21,7 @@ export default function FeatureHeader({
       <h5 className="font-medium tracking-[0.035rem] text-primary">
         {title || "FEATURES"}
       </h5>
-      <h3 className="text-display-md font-medium tracking-tight text-black">
+      <h3 className="text-3xl font-medium tracking-tight text-black md:text-display-md">
         {subTitle}
       </h3>
       <p className="text-base font-normal tracking-[0.005] text-neutral-500">

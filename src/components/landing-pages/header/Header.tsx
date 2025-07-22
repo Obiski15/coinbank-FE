@@ -5,7 +5,7 @@ import Navbar from "./Navbar"
 
 function Header() {
   return (
-    <div className="bg-white px-12 py-6 backdrop-blur-[80px]">
+    <div className="bg-white px-5 py-6 backdrop-blur-[80px] lg:px-12">
       <div className="flex items-center justify-between gap-2">
         <Logo />
         <div className="max-lg:hidden">

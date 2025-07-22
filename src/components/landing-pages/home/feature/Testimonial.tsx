@@ -1,4 +1,5 @@
 import Image from "next/image"
+import * as motion from "framer-motion/client"
 
 import Feature from "./Feature"
 import FeatureHeader from "./featureHeader"
@@ -48,9 +49,13 @@ export default function Testimonial() {
 
       <div className="grid grid-cols-3 items-center justify-between gap-8">
         {ratings.map(({ review, numRating, occupation, image, name }, i) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
             key={name}
-            className="flex h-full flex-col items-center justify-between gap-12 rounded-2xl bg-white p-12 pb-[52px]"
+            className="col-span-3 flex h-full flex-col items-center justify-between gap-12 rounded-2xl bg-white p-6 pb-[52px] md:col-span-1 md:p-12"
           >
             <Ratings numRating={numRating} />
 
@@ -76,7 +81,7 @@ export default function Testimonial() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </Feature>

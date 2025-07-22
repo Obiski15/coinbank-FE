@@ -1,13 +1,26 @@
 import Image from "next/image"
 import Link from "next/link"
+import * as motion from "framer-motion/client"
 
 import GetStarted from "./get-started"
 
+const leftAnimationOptions = {
+  initial: { opacity: 0, x: "-100%" },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true },
+}
+
+const rightAnimationOptions = {
+  initial: { opacity: 0, x: "100%" },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true },
+}
+
 export default function Content() {
   return (
-    <div className="px-40 pb-20 pt-16">
-      <div className="flex items-start justify-between gap-[118px]">
-        <div className="w-[47%] space-y-12">
+    <div className="overflow-x-hidden px-5 pb-10 pt-8 md:px-10 lg:px-40 lg:pb-20 lg:pt-16">
+      <div className="lg:flex lg:items-start lg:justify-between lg:gap-[118px]">
+        <div className="w-full space-y-12 lg:w-[47%]">
           <div className="space-y-6">
             <Link
               href="/login"
@@ -16,7 +29,7 @@ export default function Content() {
               sign in to your secure wallet
             </Link>
             <div className="space-y-8">
-              <h1 className="text-display-lg font-medium tracking-[-0.04rem] text-black">
+              <h1 className="text-4xl font-medium tracking-[-0.04rem] text-black lg:text-display-lg">
                 The next-gen crypto wallet & trading platform
               </h1>
               <p className="text-lg font-normal text-neutral-500">
@@ -28,10 +41,13 @@ export default function Content() {
           <GetStarted />
         </div>
 
-        <div className="h-[480px] w-[53%] bg-primary-400 bg-hero-content-gradient">
+        <div className="hidden h-[480px] w-[53%] bg-primary-400 bg-hero-content-gradient lg:block">
           <div className="relative h-full w-full space-y-4 bg-[url('/icons/landing-pages/home/hero-line.svg')] bg-left bg-no-repeat py-12">
             {/*  */}
-            <div className="mx-10 flex items-center justify-between gap-4 rounded-xl bg-white px-6 py-4 opacity-60">
+            <motion.div
+              {...rightAnimationOptions}
+              className="mx-10 flex items-center justify-between gap-4 rounded-xl bg-white px-6 py-4 opacity-60"
+            >
               <div className="flex items-center justify-between gap-4">
                 <Image
                   src="/icons/crypto/BTC.svg"
@@ -48,10 +64,13 @@ export default function Content() {
               </div>
 
               <p>1000</p>
-            </div>
+            </motion.div>
 
             {/*  */}
-            <div className="relative left-[10%] ml-4 flex w-[90%] items-center justify-between gap-4 rounded-xl bg-white px-6 py-4">
+            <motion.div
+              {...leftAnimationOptions}
+              className="relative left-[10%] ml-4 flex w-[90%] items-center justify-between gap-4 rounded-xl bg-white px-6 py-4"
+            >
               <div className="flex items-center justify-between gap-4">
                 <Image
                   src="/icons/crypto/ETH.svg"
@@ -68,10 +87,13 @@ export default function Content() {
               </div>
 
               <p>1000</p>
-            </div>
+            </motion.div>
 
             {/*  */}
-            <div className="relative left-[40%] ml-4 w-[60%] rounded-xl bg-white px-6 py-4">
+            <motion.div
+              {...rightAnimationOptions}
+              className="relative left-[40%] ml-4 w-[60%] rounded-xl bg-white px-6 py-4"
+            >
               <div className="flex items-center justify-between gap-4">
                 <Image
                   src="/icons/crypto/OGN.svg"
@@ -86,10 +108,13 @@ export default function Content() {
                   Origin Protocol
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/*  */}
-            <div className="relative left-[30%] ml-4 flex w-[70%] items-center justify-between gap-4 rounded-xl bg-white px-6 py-4">
+            <motion.div
+              {...leftAnimationOptions}
+              className="relative left-[30%] ml-4 flex w-[70%] items-center justify-between gap-4 rounded-xl bg-white px-6 py-4"
+            >
               <div className="flex items-center justify-between gap-4">
                 <Image
                   src="/icons/crypto/ACN.svg"
@@ -106,9 +131,13 @@ export default function Content() {
               </div>
 
               <p>1000</p>
-            </div>
+            </motion.div>
+
             {/*  */}
-            <div className="ml-4 flex items-center justify-between gap-4 rounded-xl bg-white px-6 py-4 opacity-60">
+            <motion.div
+              {...rightAnimationOptions}
+              className="ml-4 flex items-center justify-between gap-4 rounded-xl bg-white px-6 py-4 opacity-60"
+            >
               <div className="flex items-center justify-between gap-4">
                 <Image
                   src="/icons/crypto/USDT.svg"
@@ -125,9 +154,14 @@ export default function Content() {
               </div>
 
               <p>1000</p>
-            </div>
+            </motion.div>
 
-            <div className="absolute left-[-120] top-[212px] z-[99] flex items-start justify-start gap-6 rounded-2xl border-2 bg-black bg-[url('/icons/landing-pages/home/envelope.svg')] bg-right-top bg-no-repeat px-6 pb-6 pt-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="absolute left-[-120] top-[212px] z-[99] flex items-start justify-start gap-6 rounded-2xl border-2 bg-black bg-[url('/icons/landing-pages/home/envelope.svg')] bg-right-top bg-no-repeat px-6 pb-6 pt-8"
+            >
               <Image
                 src="/icons/landing-pages/home/BTC-large.svg"
                 alt="btc"
@@ -141,7 +175,7 @@ export default function Content() {
                 <br />
                 assets
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

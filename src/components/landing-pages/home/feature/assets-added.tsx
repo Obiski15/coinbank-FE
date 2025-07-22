@@ -1,4 +1,5 @@
 import Image from "next/image"
+import * as motion from "framer-motion/client"
 
 import { cn } from "@/lib/utils"
 
@@ -12,20 +13,31 @@ const icons: string[] = [
 
 function AssetsAdded() {
   return (
-    <div className="bg-primary-50 px-40">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      className="hidden bg-primary-50 px-40 lg:block"
+    >
       <div className="flex items-center justify-between gap-6 rounded-3xl bg-black bg-[url('/icons/landing-pages/home/envelope.svg')] bg-right-top bg-no-repeat px-20 py-12">
         <div className="relative">
           {icons.map((src, i) => {
             return (
-              <Image
-                style={{ right: i > 0 ? i * 4 : 0 }}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: +`0.${i}` }}
                 key={i}
-                alt={src.split("/").at(-1)!.split(".")[0]}
-                width={48}
-                height={48}
-                src={src}
-                className={cn("relative inline-block")}
-              />
+              >
+                <Image
+                  style={{ right: i > 0 ? i * 4 : 0 }}
+                  alt={src.split("/").at(-1)!.split(".")[0]}
+                  width={48}
+                  height={48}
+                  src={src}
+                  className={cn("relative inline-block")}
+                />
+              </motion.span>
             )
           })}
         </div>
@@ -46,7 +58,7 @@ function AssetsAdded() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

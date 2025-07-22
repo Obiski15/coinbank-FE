@@ -1,4 +1,5 @@
 import Image from "next/image"
+import * as motion from "framer-motion/client"
 
 import Feature from "./Feature"
 import FeatureHeader from "./featureHeader"
@@ -12,13 +13,19 @@ export default function Feature1() {
           of the market"
       />
 
-      <Image
-        src="/images/landing-pages/home/feature1.png"
-        className="mx-auto"
-        alt="feature"
-        width={1120}
-        height={584}
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
+        <Image
+          src="/images/landing-pages/home/feature1.png"
+          className="mx-auto"
+          alt="feature"
+          width={1120}
+          height={584}
+        />
+      </motion.div>
     </Feature>
   )
 }

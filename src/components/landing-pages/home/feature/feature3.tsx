@@ -1,4 +1,5 @@
 import Image from "next/image"
+import * as motion from "framer-motion/client"
 
 import Feature from "./Feature"
 import FeatureHeader from "./featureHeader"
@@ -18,14 +19,18 @@ const feature = [
 
 export default function Feature3() {
   return (
-    <Feature className="bg-white pb-[100px]">
+    <Feature className="bg-white p-5 lg:pb-[100px]">
       <FeatureHeader subTitle="Supercharge your trades with advanced features" />
 
       <div className="grid grid-cols-2 items-start justify-between gap-8">
         {feature.map(({ header, description }, i) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
             key={i + 1}
-            className="shadow-[0px_12px_80px_0px_hsla(250, 80%, 56%, 0.1)] col-span-1 h-full rounded-3xl border border-neutral-200 bg-white"
+            className="shadow-[0px_12px_80px_0px_hsla(250, 80%, 56%, 0.1)] col-span-2 h-full rounded-3xl border border-neutral-200 bg-white md:col-span-1"
           >
             <Image
               src={`/images/landing-pages/home/supercharge-${i + 1}.png`}
@@ -34,15 +39,15 @@ export default function Feature3() {
               width={544}
               height={250}
             />
-            <div className="space-y-4 p-12 pt-8">
+            <div className="space-y-4 p-6 pt-8 md:p-12">
               <h3 className="text-2xl font-medium tracking-[0.015rem] text-black">
                 {header}
               </h3>
-              <p className="text-base font-normal -tracking-tighter text-neutral-700">
+              <p className="font-normal -tracking-tighter text-neutral-700 md:text-base">
                 {description}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </Feature>
